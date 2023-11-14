@@ -24,7 +24,7 @@ function handleClick(event) {
         return gallery.next();
     }
 
-    let gallery = new SimpleLightbox('.gallery__item a', { captionsData: "alt", captionDelay: 250, overlayOpacity: 0.5});
+    let gallery = new SimpleLightbox('.gallery__item a', { captionsData: "alt", captionsType: 'alt', captionDelay: 250, captionPosition: 'bottom',});
     gallery.on('show.simplelightbox', function () {
         `<img class="gallery__image " 
         src="${galleryItems.original}" 
