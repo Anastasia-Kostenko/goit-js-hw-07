@@ -36,15 +36,13 @@ function handleClick(event) {
     lightBox.show();
 
     const closeLightBox = (event) => {
-            if (event.key === 'Escape') {
-                lightBox.close();
-                document.removeEventListener('keydown', closeLightBox);
+        if (event.key === 'Escape') {
+            lightBox.close();
+            document.removeEventListener('keydown', closeLightBox);
             }
         };
     document.addEventListener('keydown', closeLightBox);
-
 }
         
 console.log(handleClick(event));
 
-// console.log(galleryItems);
