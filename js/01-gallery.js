@@ -40,7 +40,7 @@ function onClick(event) {
   modalOn.show();
 
   function OnEscClose(event) {
-    if (evt.code === 'Escape') return modalOn.close();
+    if (event.code === 'Escape') return modalOn.close();
   }
 }
 
