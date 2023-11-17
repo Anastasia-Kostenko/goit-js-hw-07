@@ -15,7 +15,8 @@ const markGallery = galleryItems
         />
     </a>
 </li>
-    `).join("")
+    `)
+  .join("");
 
 container.insertAdjacentHTML('beforeend', markGallery);
 container.addEventListener('click', onClick);
