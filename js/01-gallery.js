@@ -1,14 +1,12 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
     
-const container = document.querySelector(".gallery")
+const container = document.querySelector('.gallery');
 
-container.insertAdjacentHTML("beforeend", createMarkup(galleryItems))
-container.addEventListener("click", handleClick)
-
-function createMarkup(arr) {
-    return arr.map(({ preview, original, description }) =>`<li class="gallery__item">
-    <a class="gallery__link" href="${original}">
+const markGallery = galleryItems
+  .map(({ preview, original, description }) =>
+    `<li class="gallery__item">
+      <a class="gallery__link" href="${original}">
         <img
         class="gallery__image"
         src="${preview}"
@@ -18,31 +16,33 @@ function createMarkup(arr) {
     </a>
 </li>
     `).join("")
-}
 
-function handleClick(event) {
+container.insertAdjacentHTML('beforeend', markGallery);
+container.addEventListener('click', onClick);
+
+function onClick(event) {
     event.preventDefault();
 
-    if (!event.target.classList.contains("gallery__image")) {
-        return;
+    if (!event.target.classList.contains('gallery__image')) {
+      return;
     };
 
-    const originalImageURL = event.target.dataset.source;
-    // console.log(originalImageURL);
-    
-    const lightBox = basicLightbox.create(
-        `<img src="${originalImageURL}" width="800" height="600"/>`
-    );
-    lightBox.show();
+  const modalImg = event.target.dataset.source;
 
-    const closeLightBox = (event) => {
-        if (event.key === 'Escape') {
-            lightBox.close();
-            document.removeEventListener('keydown', closeLightBox);
-            }
-        };
-    document.addEventListener('keydown', closeLightBox);
+  const modalOn = basicLightbox.create(`<img src="${modalImg}" width="800" height="600"/>`, {
+    onShow: () => {
+      document.addEventListener('keydown', OnEscClose);
+    },
+    onClose: () => {
+      document.removeEventListener('keydown', OnEscClose);
+    },
+  });
+  modalOn.show();
+
+  function OnEscClose(event) {
+    if (evt.code === 'Escape') return modalOn.close();
+  }
 }
-        
-console.log(handleClick(event));
+
+
 
